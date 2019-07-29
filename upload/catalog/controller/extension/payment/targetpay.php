@@ -40,6 +40,21 @@ class Targetpay extends Controller
     }
 
     /**
+     * Get customer email info
+     * @param $order
+     * @return bool
+     */
+    public function getConsumerEmail($order)
+    {
+        if ($this->customer->isLogged()) {
+            return $this->customer->getEmail();
+        } else if(isset($order['email'])) {
+            return $order['email'];
+        }
+        return false;
+    }
+
+    /**
      * Start payment
      */
     public function send()
@@ -53,6 +68,8 @@ class Targetpay extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         
         $rtlo = ($this->config->get($setting_name . $this->paymentName . '_rtlo')) ? $this->config->get($setting_name . $this->paymentName . '_rtlo') : TargetPayCore::DEFAULT_RTLO; // Default TargetPay
+
+        $consumer_email = $this->getConsumerEmail($order_info);
 
         if(!in_array(strtolower($order_info['payment_iso_code_2']), ['nl', 'be']) || !in_array(strtolower($order_info['shipping_iso_code_2']), ['nl', 'be'])) {
             $this->log->write("Invalid shipping/payment country");
@@ -71,6 +88,11 @@ class Targetpay extends Controller
             $params = array('order_id' => $this->session->data['order_id'], 'payment_type' => $paymentType);
             $targetPay->setReturnUrl(html_entity_decode($this->url->link('extension/payment/tp_callback/returnurl', $params, true)));
             $targetPay->setReportUrl(html_entity_decode($this->url->link('extension/payment/tp_callback/report', $params, true)));
+            // Set consumer email
+            if(!empty($consumer_email)) {
+                $targetPay->bindParam('email', $consumer_email);
+            }
+
             $bankUrl = $targetPay->startPayment();
             
             if (! $bankUrl) {
@@ -82,7 +104,7 @@ class Targetpay extends Controller
                 // For bankwire, after starting API, open the instruction page
                 if ($paymentType == 'BW') {
                     // store order_id and moreInformation into session for instruction page
-                    $this->session->data['bw_info'] = ['bw_data' => $targetPay->moreInformation,'order_total' => $order_info['total'], 'customer_email' => $order_info['email']];
+                    $this->session->data['bw_info'] = ['bw_data' => $targetPay->moreInformation,'order_total' => $order_info['total'], 'customer_email' => $consumer_email];
                     $bankUrl = $this->url->link('extension/payment/bankwire/bwintro');
                 }
                 
@@ -310,7 +332,6 @@ class Targetpay extends Controller
     function additionalParametersBW(TargetPayCore $targetPay, $order)
     {
         $targetPay->bindParam('salt', $targetPay->bwSalt);
-        $targetPay->bindParam('email', $order['email']);
         $targetPay->bindParam('userip', $_SERVER["REMOTE_ADDR"]);
     }
 }
