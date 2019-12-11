@@ -2,13 +2,13 @@
 
 /**
  *
- *	iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ *	DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- *	@file 		TargetPay Catalog Template
- *	@author		Yellow Melon B.V. / www.idealplugins.nl
+ *	@file 		DigiWallet Catalog Template
+ *	@author		TargetMedia B.V  / https://digiwallet.nl
  *
  */
 ?>

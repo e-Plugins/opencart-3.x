@@ -1,35 +1,35 @@
 <?php
 
 /**
- *  iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ *  DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- * @file       TargetPay Catalog Controller
- * @author     Yellow Melon B.V. / www.sofortplugins.nl
+ * @file       DigiWallet Catalog Controller
+ * @author   TargetMedia B.V / www.sofortplugins.nl
  * @release    5 nov 2014
  */
 
-require_once ("targetpay.php");
+require_once ("digiwallet.frontend.php");
 
 
-class ControllerExtensionPaymentSofort extends Targetpay
+class ControllerExtensionPaymentSofort extends DigiwalletFrontEnd
 {
     public $paymentType = 'DEB';
-    public $paymentName = TargetPayCore::METHOD_SOFORT;
+    public $paymentName = DigiWalletCore::METHOD_SOFORT;
     
-    public function setAdditionParameter($targetPay, $order = null)
+    public function setAdditionParameter($digiWallet, $order = null)
     {
         if (!empty($this->request->post['country_id'])) {
-            $targetPay->setCountryId($this->request->post['country_id']);
+            $digiWallet->setCountryId($this->request->post['country_id']);
         }
         return true;
     }
     
     public function setListConfirm($data)
     {
-        $targetCore = new TargetPayCore($this->paymentType);
+        $targetCore = new DigiWalletCore($this->paymentType);
         $data['custom'] = $this->session->data['order_id'];
         $data['banks'] = $targetCore->getCountryList();
         return $data;

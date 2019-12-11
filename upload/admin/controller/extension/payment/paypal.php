@@ -2,20 +2,20 @@
 
 /**
  *
- *    iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ * DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- * @file        TargetPay Admin Controller
- * @author        Yellow Melon B.V. / www.paypalplugins.nl
+ * @file        DigiWallet Admin Controller
+ * @author      TargetMedia B.V / www.paypalplugins.nl
  *
  */
-require_once ("../system/library/targetpay.class.php");
-require_once ("targetpay.php");
+require_once ("../system/library/digiwallet.core.php");
+require_once ("digiwallet.admin.php");
 
-class ControllerExtensionPaymentPaypal extends TargetPayAdmin
+class ControllerExtensionPaymentPaypal extends DigiWalletAdmin
 {
     protected $error = array();
-    protected $type = TargetPayCore::METHOD_PAYPAL;
+    protected $type = DigiWalletCore::METHOD_PAYPAL;
 }

@@ -1,24 +1,24 @@
 <?php
 
 /**
- *  iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ *  DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- * @file       TargetPay Catalog Controller
- * @author     Yellow Melon B.V. / www.sofortplugins.nl
+ * @file       DigiWallet Catalog Controller
+ * @author   TargetMedia B.V / www.sofortplugins.nl
  * @release    5 nov 2014
  * @release 2    June 2017
  */
-require_once ("targetpay.php");
+require_once ("digiwallet.frontend.php");
 
-class ControllerExtensionPaymentBankwire extends Targetpay
+class ControllerExtensionPaymentBankwire extends DigiwalletFrontEnd
 {
 
     public $paymentType = 'BW';
 
-    public $paymentName = TargetPayCore::METHOD_BANKWIRE;
+    public $paymentName = DigiWalletCore::METHOD_BANKWIRE;
 
     /**
      * https://www.digiwallet.nl/documentation/bankwire

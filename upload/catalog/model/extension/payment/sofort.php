@@ -2,13 +2,13 @@
 
 /**
  *
- *  iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ *  DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- *  @file TargetPay Catalog Model
- *  @author Yellow Melon B.V. / www.idealplugins.nl
+ *  @file DigiWallet Catalog Model
+ *  @author TargetMedia B.V  / https://digiwallet.nl
  *
  */
 class ModelExtensionPaymentSofort extends Model
@@ -24,7 +24,7 @@ class ModelExtensionPaymentSofort extends Model
     {
         $this->load->language('extension/payment/sofort');
         
-        $checkTable = $this->db->query('show tables like "'. DB_PREFIX .'targetpay_sofort"');
+        $checkTable = $this->db->query('show tables like "'. DB_PREFIX .'digiwallet_sofort"');
         if(!$checkTable->num_rows){
             return false;
         }
@@ -58,9 +58,9 @@ class ModelExtensionPaymentSofort extends Model
         if ($status) {
             $method_data = array(
                 'code' => 'sofort',
-                //'title' => $this->language->get('text_title'),
+                'title' => $this->language->get('text_title'),
                 'sort_order' => $this->config->get('sofort_sort_order'),
-                'terms' => '<img src="' . $this->config->get('config_ssl') . 'catalog/view/theme/default/image/targetpay/DEB.png" style="height:30px; display:inline">'
+                'terms' => '<img src="' . $this->config->get('config_ssl') . 'catalog/view/theme/default/image/digiwallet/DEB.png" style="height:30px; display:inline; margin-left: 5px;">'
             );
         }
         

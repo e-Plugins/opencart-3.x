@@ -2,16 +2,16 @@
 
 /**
  *
- *    iDEALplugins.nl
- *  TargetPay plugin for Opencart 2.0+
+ * DigiWallet.nl
+ * DigiWallet plugin for Opencart 2.0+
  *
- *  (C) Copyright Yellow Melon 2014
+ *  (C) Copyright TargetMedia B.V 2014
  *
- * @file        TargetPay Admin Model
- * @author        Yellow Melon B.V. / www.idealplugins.nl
+ * @file        DigiWallet Admin Model
+ * @author      TargetMedia B.V / https://digiwallet.nl
  *
  */
-require_once ("../system/library/targetpay.class.php");
+require_once ("../system/library/digiwallet.core.php");
 
 class ModelExtensionPaymentPaypal extends Model
 {
@@ -20,13 +20,13 @@ class ModelExtensionPaymentPaypal extends Model
 
     public function createTable()
     {
-        $this->db->query(TargetPayCore::getCreateTableQuery($this));
+        $this->db->query(DigiWalletCore::getCreateTableQuery($this));
         // check if new version of this plugin is installed and used or not
-        $data = $this->db->query(TargetPayCore::getNewVersionDataQuery($this));
+        $data = $this->db->query(DigiWalletCore::getNewVersionDataQuery($this));
         
         if ($data->num_rows == 0) {
             $oldTable = DB_PREFIX . $this->methodName;
-            $newTable = DB_PREFIX . TargetPayCore::TARGETPAY_PREFIX . $this->methodName;
+            $newTable = DB_PREFIX . DigiWalletCore::DIGIWALLET_PREFIX . $this->methodName;
         
             $this->migrateTable($oldTable, $newTable);
         }
@@ -49,7 +49,7 @@ class ModelExtensionPaymentPaypal extends Model
     {
         $sqlCheckForMethodInstalled = 'select extension_id from ' . DB_PREFIX . 'extension where type="payment" and code="' . $this->methodName . '" limit 1';
         
-        $findOldTableSql = TargetPayCore::getOldTableCheckQuery($this);
+        $findOldTableSql = DigiWalletCore::getOldTableCheckQuery($this);
         
         $tableFound = $this->db->query($findOldTableSql);
         $installed = $this->db->query($sqlCheckForMethodInstalled);
