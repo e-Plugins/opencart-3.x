@@ -22,7 +22,7 @@
 class DigiWalletCore
 {
     // Constants
-    const APP_ID = "dw_opencart3.x_1.0.2";
+    const APP_ID = "dw_opencart3.x_1.0.3";
 
     const DEFAULT_RTLO = 93929;
 
