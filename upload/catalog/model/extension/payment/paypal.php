@@ -11,7 +11,7 @@
  *  @author TargetMedia B.V / https://digiwallet.nl
  *
  */
-require_once ("system/library/digiwallet.class.php");
+require_once ("system/library/digiwallet.core.php");
 require_once ("digibase_model.php");
 
 class ModelExtensionPaymentPaypal extends BaseDigiWalletModel

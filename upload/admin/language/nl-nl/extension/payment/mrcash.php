@@ -11,6 +11,7 @@ $_['text_sale'] = 'Verkopen';
 
 // Entry
 $_['entry_rtlo'] = 'DigiWallet Layoutcode';
+$_['entry_api_token'] = 'DigiWallet API Token';
 $_['entry_test'] = 'Test Mode';
 $_['entry_total'] = 'Min.bedrag';
 
@@ -24,6 +25,7 @@ $_['entry_sort_order'] = 'Sorteer volgorde';
 // Error
 $_['error_permission'] = 'Waarschuwing: je bent niet gemachtigd om deze instellingen te wijzigen';
 $_['error_rtlo'] = 'DigiWallet layoutcode (rtlo) is verplicht!';
+$_['error_api_token'] = 'DigiWallet API Token is verplicht!';
 
 // Tab
 $_['tab_general'] = 'Algemeen';

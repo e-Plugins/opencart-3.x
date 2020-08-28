@@ -54,6 +54,17 @@ echo $header; ?><?php echo $column_left; ?>
                   <?php } ?>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="entry-api-token"><?php echo $entry_api_token; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="<?= $type ?>_api_token" value="<?php echo $payment_api_token; ?>" placeholder="<?php echo $entry_api_token; ?>" id="entry-api-token" class="form-control"/>
+                  <?php if ($error_api_token) { ?>
+                  <div class="text-danger"><?php echo $error_api_token; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-test">
                   <?php echo $entry_test; ?></label>

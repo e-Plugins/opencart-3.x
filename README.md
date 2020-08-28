@@ -2,7 +2,7 @@
 
 ## Usage
 Use this plugin to add support for iDEAL, Mister Cash, Sofort and other payment methods of 
-TargetPay.com and Digiwallet.nl to your webstore. 
+TargetPay.com and DigiWallet.nl to your webstore. 
 
 ## Supported Paymethods
 | Paymethod	|   supported	| 
@@ -12,6 +12,8 @@ TargetPay.com and Digiwallet.nl to your webstore.
 | Creditcard	|:heavy_check_mark:	|
 | Paysafecard	|:heavy_check_mark:	|
 | Sofort	|:heavy_check_mark:	|
+| GiroPay	|:heavy_check_mark:	|
+| EPS	|:heavy_check_mark:	|
 | Paypal	|:heavy_check_mark:	|
 | Afterpay	|:heavy_check_mark:	|
 | Bankwire	|:heavy_check_mark:	|
@@ -20,8 +22,8 @@ TargetPay.com and Digiwallet.nl to your webstore.
 
 ## Installation
 
-### 1. Set up a Digiwallet account
-Before you can use the plugin, please sign up for a Digiwallet account on www.digiwallet.nl
+### 1. Set up a DigiWallet account
+Before you can use the plugin, please sign up for a DigiWallet account on www.digiWallet.nl
 
 Note that the plugin can be used in a live environment only after it has been completed with your details and
 is approved by their compliance department. This would normally take about one working day. 
@@ -45,7 +47,7 @@ Since we did a complete rebuild of the plugin it is recommended to do a clean in
 Please see the FAQ on https://www.e-plugins.nl/plugin/opencart2.3#help
 
 ## Opencart 2.2
-Since Opencart changed its extension structure in version 2.3 previous versions are no longer compatible.
+Since Opencart changed its extension structure in version 2.3, previous versions are no longer compatible.
 If you have a webshop running Opencart 2.2 consider upgrading your store, or install the 2.2 version of this plugin: https://github.com/e-plugins/opencart-2.2/releases/tag/2.2
 
 ## Opencart 3

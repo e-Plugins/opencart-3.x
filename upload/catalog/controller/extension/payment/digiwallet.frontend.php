@@ -103,6 +103,12 @@ class DigiwalletFrontEnd extends Controller
             } else {
                 // For bankwire, after starting API, open the instruction page
                 if ($paymentType == 'BW') {
+                    //Set order to visible on backend
+                    $order_status_id = $this->config->get($setting_name . $this->paymentName . '_pending_status_id');
+                    if (! $order_status_id) {
+                        $order_status_id = 1;
+                    } // Default to 'pending' after payment
+                    $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $order_status_id, $digiWallet->moreInformation);
                     // store order_id and moreInformation into session for instruction page
                     $this->session->data['bw_info'] = ['bw_data' => $digiWallet->moreInformation,'order_total' => $order_info['total'], 'customer_email' => $consumer_email];
                     $bankUrl = $this->url->link('extension/payment/bankwire/bwintro');
@@ -152,8 +158,6 @@ class DigiwalletFrontEnd extends Controller
      */
     private static function format_phone_nld($phone) {
         // note: making sure we have something
-        if(!isset($phone{3})) { return ''; }
-        // note: strip out everything but numbers
         $phone = preg_replace("/[^0-9]/", "", $phone);
         $length = strlen($phone);
         switch($length) {
@@ -179,8 +183,6 @@ class DigiwalletFrontEnd extends Controller
      * @return string|mixed
      */
     private static function format_phone_bel($phone) {
-        // note: making sure we have something
-        if(!isset($phone{3})) { return ''; }
         // note: strip out everything but numbers
         $phone = preg_replace("/[^0-9]/", "", $phone);
         $length = strlen($phone);

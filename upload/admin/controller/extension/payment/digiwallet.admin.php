@@ -16,6 +16,8 @@ define('OC_VERSION', substr(VERSION, 0, 1));
 
 class DigiWalletAdmin extends Controller
 {
+    const DEFAULT_RTLO = 39411;
+
     public function index()
     {
         //Check Opencart version.
@@ -50,8 +52,9 @@ class DigiWalletAdmin extends Controller
         $data['text_all_zones'] = $this->language->get('text_all_zones');
         $data['text_yes'] = $this->language->get('text_yes');
         $data['text_no'] = $this->language->get('text_no');
-        
+
         $data['entry_rtlo'] = $this->language->get('entry_rtlo');
+        $data['entry_api_token'] = $this->language->get('entry_api_token');
         $data['entry_test'] = $this->language->get('entry_test');
         $data['entry_transaction'] = $this->language->get('entry_transaction');
         $data['entry_total'] = $this->language->get('entry_total');
@@ -77,11 +80,17 @@ class DigiWalletAdmin extends Controller
         } else {
             $data['error_warning'] = '';
         }
-        
+
         if (isset($this->error['rtlo'])) {
             $data['error_rtlo'] = $this->error['rtlo'];
         } else {
             $data['error_rtlo'] = '';
+        }
+
+        if (isset($this->error['api_token'])) {
+            $data['error_api_token'] = $this->error['api_token'];
+        } else {
+            $data['error_api_token'] = '';
         }
         
         $data['breadcrumbs'] = array();
@@ -101,9 +110,15 @@ class DigiWalletAdmin extends Controller
         } else {
             $data['payment_rtlo'] = $this->config->get($setting_name . $this->type . '_rtlo');
         }
-        
+
+        if (isset($this->request->post[$setting_name . $this->type . '_api_token'])) {
+            $data['payment_api_token'] = $this->request->post[$setting_name . $this->type . '_api_token'];
+        } else {
+            $data['payment_api_token'] = $this->config->get($setting_name . $this->type . '_api_token');
+        }
+
         if (! isset($data['payment_rtlo'])) {
-            $data['payment_rtlo'] = DigiWalletCore::DEFAULT_RTLO; // Default DigiWallet
+            $data['payment_rtlo'] = self::DEFAULT_RTLO; // Default DigiWallet
         }
         
         if (isset($this->request->post[$setting_name . $this->type . '_total'])) {
@@ -174,8 +189,8 @@ class DigiWalletAdmin extends Controller
         if (! $this->user->hasPermission('modify', 'extension/payment/' . $this->type)) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
-        
-        if (! $this->request->post[$setting_name . $this->type . '_rtlo'] || $this->request->post[$setting_name . $this->type . '_rtlo'] == DigiWalletCore::DEFAULT_RTLO) {
+
+        if (! $this->request->post[$setting_name . $this->type . '_rtlo']) {
             $this->error['rtlo'] = $this->language->get('error_rtlo');
         }
         
@@ -195,6 +210,6 @@ class DigiWalletAdmin extends Controller
         $this->{'model_extension_payment_' . $this->type}->createTable();
 
         $this->load->model('setting/setting');
-        $this->model_setting_setting->editSetting($setting_name . DigiWalletCore::METHOD_AFTERPAY, array($this->type . '_status' => 1));
+        $this->model_setting_setting->editSetting($setting_name . $this->type, array($this->type . '_status' => 1));
     }
 }

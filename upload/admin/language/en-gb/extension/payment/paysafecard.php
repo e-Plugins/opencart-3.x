@@ -11,6 +11,7 @@ $_['text_sale'] = 'Sale';
 
 // Entry
 $_['entry_rtlo'] = 'DigiWallet Outlet ID';
+$_['entry_api_token'] = 'DigiWallet API Token';
 $_['entry_test'] = 'Test Mode';
 $_['entry_total'] = 'Total';
 
@@ -24,6 +25,7 @@ $_['entry_sort_order'] = 'Sort Order';
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify payment method DigiWallet!';
 $_['error_rtlo'] = 'DigiWallet layoutcode (rtlo) is required!';
+$_['error_api_token'] = 'DigiWallet API Token is required!';
 
 // Tab
 $_['tab_general'] = 'General';
