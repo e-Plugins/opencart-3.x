@@ -23,7 +23,7 @@ TargetPay.com and DigiWallet.nl to your webstore.
 ## Installation
 
 ### 1. Set up a DigiWallet account
-Before you can use the plugin, please sign up for a DigiWallet account on www.digiWallet.nl
+Before you can use the plugin, please sign up for a DigiWallet account on www.digiwallet.nl
 
 Note that the plugin can be used in a live environment only after it has been completed with your details and
 is approved by their compliance department. This would normally take about one working day. 
